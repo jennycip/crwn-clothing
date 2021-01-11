@@ -1,0 +1,66 @@
+.banner-digi {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    background: #333333;
+    color: #fff;
+    padding: 16px;
+
+    .banner-close::after {
+        content: 'x'; 
+        color: #fff;
+        font-weight: 300;
+        float: right;
+        font-size: 25px;
+    }
+
+    .banner-content {
+        @media screen and (max-width: 768px) {
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: auto;
+        }            
+        clear: both;
+        display: flex;
+        justify-content: start;
+        flex-flow: row;
+        align-items: center;
+
+        > div {
+            @media screen and (max-width: 768px) {
+                width: 50%;
+                margin: auto;
+                text-align: center;
+            }    
+            padding: 0 16px;
+        }
+    }
+
+    .banner-button {
+        @media screen and (max-width: 768px) {
+        clear: both;
+        margin: 16px auto;
+        display: block;
+        }
+        text-align: center;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+
+        a.btn-general {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px;
+            background: #e60000;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            min-width: 145px;
+            margin-right: 42px;
+        }
+    }
+}
