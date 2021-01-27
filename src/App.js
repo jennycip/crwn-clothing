@@ -10,9 +10,11 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CheckoutPage from "./pages/checkout/checkout.component";
+//import Banner from "./components/banner/banner" COMPONENTE PER MOSAIX
 import "./App.css";
 
 class App extends React.Component {
+
   unsubscribeFromAuth = null;
 
   componentDidMount() {
@@ -53,15 +55,26 @@ class App extends React.Component {
               this.props.currentUser ? (
                 <Redirect to="/" />
               ) : (
-                <SignInAndSignUpPage />
-              )
+                  <SignInAndSignUpPage />
+                )
             }
           />
         </Switch>
+        {/*
+        <Banner
+          FlagBanner='bannerpromoflag'
+          titleBanner='title'
+          textBanner='Testo'
+          GoUrlBanner='GO'
+          urlBanner='http://www.html.it'
+
+        />
+        */}
       </div>
     );
   }
 }
+
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
@@ -70,5 +83,15 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
+
+if (window.sessionStorage.getItem('bannerpromoflag')) {
+
+  if (window.performance) {
+    // Page refreshed
+    if (performance.navigation.type === 1) {
+      window.sessionStorage.removeItem('bannerpromoflag');
+    }
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

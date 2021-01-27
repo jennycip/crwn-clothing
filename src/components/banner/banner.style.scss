@@ -1,0 +1,104 @@
+.banner-digi {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+    background: #333333;
+    color: #fff;
+    padding: 16px;
+
+    .banner-close::after {
+        content: 'X'; 
+        //background-image: url(@CLOSE-PROMO-BANNER);
+		display: block;
+		background-size: 100%;
+		width: 24px;
+		height: 24px;	
+		background-repeat: no-repeat;         
+        float: right;
+    }
+
+    .banner-content {
+        @media screen and (max-width: 768px) {
+            justify-content: start;
+            flex-wrap: wrap;
+            margin: auto;
+            margin-left: auto;
+            margin-bottom: 0;
+        }            
+        clear: both;
+        display: flex;
+        justify-content: start;
+        flex-flow: row;
+        align-items: center;
+        margin-left: 12px;
+        margin-bottom: 12px;
+
+        div.banner-ico {
+            //background-image: url(@ICO-PROMO-BANNER);
+            display: block;
+            background-size: 100%;
+            background-position: center;
+            width: 62px;
+            height: 62px;
+            @media screen and (max-width: 768px) {
+                width: 50px;
+                height: 50px;	
+            }
+            background-repeat: no-repeat;  
+            margin: 0;   
+            text-align: left;    
+        }
+
+        .content-text {
+            margin-top: 5px;
+            margin-left: 16px;
+            text-align: left;
+            white-space: nowrap;
+            h2 {
+                color: #fff;
+                font-size: 24px;
+                @media screen and (max-width: 768px) {
+                    font-size: 20px;
+                }
+            }
+            @media screen and (min-width: 768px) {
+                p {
+                    font-size: 16px;
+                }
+            }
+        }
+
+
+    }
+
+    .banner-button {
+        @media screen and (max-width: 768px) {
+        clear: both;
+        margin: 24px auto 8px;
+        display: block;
+        }
+        text-align: center;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+
+        .btn-general {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px;
+            background: #e60000;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            min-width: 328px;
+            @media screen and (min-width: 768px) {
+                min-width: 145px;
+                margin-right: 42px;
+            }
+        }
+    }
+}
