@@ -6,15 +6,15 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CheckoutPage from "./pages/checkout/checkout.component";
+import { selectCollectionsForPreview } from "./redux/shop/shop.selectors"
 //import Banner from "./components/banner/banner" COMPONENTE PER MOSAIX
 import "./App.css";
 
 class App extends React.Component {
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
@@ -45,36 +45,25 @@ class App extends React.Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path='/' component={HomePage} />
+          <Route path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route
             exact
-            path="/signin"
+            path='/signin'
             render={() =>
               this.props.currentUser ? (
-                <Redirect to="/" />
+                <Redirect to='/' />
               ) : (
                   <SignInAndSignUpPage />
                 )
             }
           />
         </Switch>
-        {/*
-        <Banner
-          FlagBanner='bannerpromoflag'
-          titleBanner='title'
-          textBanner='Testo'
-          GoUrlBanner='GO'
-          urlBanner='http://www.html.it'
-
-        />
-        */}
       </div>
     );
   }
 }
-
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
@@ -84,14 +73,7 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-if (window.sessionStorage.getItem('bannerpromoflag')) {
-
-  if (window.performance) {
-    // Page refreshed
-    if (performance.navigation.type === 1) {
-      window.sessionStorage.removeItem('bannerpromoflag');
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
